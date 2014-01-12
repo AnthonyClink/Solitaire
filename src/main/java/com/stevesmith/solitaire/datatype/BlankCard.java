@@ -8,6 +8,11 @@ public class BlankCard extends Card{
 	}
 
 	@Override
+	public String getCssName(){
+		return "cardBack";
+	}
+	
+	@Override
 	public String getImageUrl(){
 		return "images/nocards.png";
 	}

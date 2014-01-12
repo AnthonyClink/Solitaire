@@ -23,6 +23,18 @@ public enum Rank {
 		this.fullName = fullName;
 	}
 	
+	public static Rank[] orderedRanks(){
+		Rank[] ranks = Rank.values();
+		Rank[] retval = new Rank[ranks.length];
+		retval[0] = ranks[0];
+		
+		for(int i = 1; i < ranks.length; i++){
+			retval[i] = ranks[ranks.length - i];
+		}
+		
+		return retval;
+	}
+	
 	public String getShortName(){
 		return shortName;
 	}

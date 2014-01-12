@@ -1,15 +1,24 @@
 package com.stevesmith.solitaire.datatype;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Card {
 
 	private Rank rank;
 	private Suit suit;
 	private boolean faceUp;
+	private String cssName;
 	
 	public Card(Rank rank, Suit suit, boolean faceUp){
 		this.rank = rank;
 		this.suit = suit;
 		this.faceUp = faceUp;
+		
+		 
+		String suitName = getSuit().getFullName().toLowerCase();
+		suitName = StringUtils.capitalize(suitName);
+		
+		cssName = getRank().getFullName().toLowerCase() + "Of" + suitName;
 	}
 	
 	public String getImageUrl(){
@@ -19,6 +28,14 @@ public class Card {
 			return "images/facedown.png";
 		}
 	}	
+	
+	public String getCssName(){
+		if(isFaceUp()){
+			return cssName;
+		}else{
+			return "cardBack";
+		}
+	}
 	
 	public String getShortName() {
 		

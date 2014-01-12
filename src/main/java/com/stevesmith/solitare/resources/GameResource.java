@@ -30,19 +30,6 @@ public class GameResource {
 		this.gameService = gameService;
 		
 	}
-	
-    @GET
-    @Path("deck")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Deck getDeck(){
-    	List<Card> cards = new ArrayList<Card>();
-    	for(Suit suit : Suit.values()){
-    		for(Rank rank : Rank.values()){
-    			cards.add(new Card(rank, suit, true));
-    		}
-    	}
-    	return new Deck(cards);
-    }
     
     @GET
     @Path("gameboard")
