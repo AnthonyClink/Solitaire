@@ -5,7 +5,13 @@ public enum Suit {
 	SPADE("S", "Spades"),
 	HEART("H", "Hearts"),
 	CLUB("C", "Clubs"),
-	DIAMOND("D", "Diamonds");
+	DIAMOND("D", "Diamonds"),
+	BLANK("B", "Card"),
+	DOWN("DWN", "Down");
+	
+	public static final Suit[] standardSuits(){
+		return new Suit[]{SPADE, HEART, CLUB, DIAMOND};
+	}
 	
 	private String shortName;
 	private String fullName;

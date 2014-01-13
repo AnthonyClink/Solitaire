@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.Singleton;
@@ -67,7 +68,7 @@ public class GameService {
 
 	public void dealGame(Deck deck) {
 		creatGameMap();
-		List<GameSpot> gameSpotList = new ArrayList<>();
+		List<GameSpot> gameSpotList = Lists.newArrayList();
 		for(GameSpot gameSpot : GameSpot.values()){
 			gameSpotList.add(gameSpot);
 		}
@@ -87,8 +88,8 @@ public class GameService {
 	
 	public Deck newFullDeck(){
 		Deck deck = deckProvider.get();
-		for(Suit suit : Suit.values()){
-			for(Rank rank : Rank.values()){
+		for(Suit suit : Suit.standardSuits()){
+			for(Rank rank : Rank.standardRanks()){
 				deck.addCard(new Card(rank, suit, false));
 			}
 		}return deck;

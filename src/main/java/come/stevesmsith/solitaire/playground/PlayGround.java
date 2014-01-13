@@ -13,6 +13,7 @@ import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
@@ -261,7 +262,7 @@ public class PlayGround {
 	}
 	
 	private static void printOutDisplaytMap(HashMap<Integer, String> displayMap){
-		List<String> row = new ArrayList<>();
+		List<String> row = Lists.newArrayList();
 		int count = 0;
 		boolean keepGoing = false;
 		for(int i = 1; i <= 676; i++){

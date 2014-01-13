@@ -1,64 +1,62 @@
 package com.stevesmith.solitaire.datatype;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class Card {
 
+	private static final Card FACE_DOWN_CARD = new Card(Rank.FACE, Suit.DOWN, true);
 	private Rank rank;
 	private Suit suit;
 	private boolean faceUp;
-	private String cssName;
 	
 	public Card(Rank rank, Suit suit, boolean faceUp){
 		this.rank = rank;
 		this.suit = suit;
 		this.faceUp = faceUp;
-		
-		 
-		String suitName = getSuit().getFullName().toLowerCase();
-		suitName = StringUtils.capitalize(suitName);
-		
-		cssName = getRank().getFullName().toLowerCase() + "Of" + suitName;
-	}
-	
-	public String getImageUrl(){
-		if(isFaceUp()){
-			return "images/" + getShortName() + ".png";
-		}else{
-			return "images/facedown.png";
-		}
-	}	
-	
-	public String getCssName(){
-		if(isFaceUp()){
-			return cssName;
-		}else{
-			return "cardBack";
-		}
 	}
 	
 	public String getShortName() {
-		
+		if(isFaceDown()){
+			return FACE_DOWN_CARD.getShortName();
+		}
 		return getRank().getShortName().toLowerCase() + "-" + getSuit().getShortName().toLowerCase();
+	}
+	
+	public String getLongName(){
+		if(isFaceDown()){
+			return FACE_DOWN_CARD.getLongName();
+		}
+		return getRank().getFullName() + " of " + getSuit().getFullName();
 	}
 
 	public Rank getRank() {
+		if(isFaceDown()){
+			return FACE_DOWN_CARD.getRank();
+		}
 		return rank;
 	
 	}
 	
 	public Suit getSuit(){
+		if(isFaceDown()){
+			return FACE_DOWN_CARD.getSuit();
+		}
 		return suit;
 	}
 
 	public boolean isFaceUp() {
 		return faceUp;		
 	}
+
+	private boolean isFaceDown() {
+		return !isFaceUp();
+	}
+
 	
 	public boolean isRed(){
-		if(suit == Suit.HEART || suit == suit.DIAMOND){
+		if(suit == Suit.HEART || suit == Suit.DIAMOND){
 			return true;
-		} else {return false;}
+		} else {
+			return false;
+		}
 	}
 
 	public void turnFaceUp() {
@@ -71,6 +69,9 @@ public class Card {
 	
 	@Override
 	public String toString(){
+		if(isFaceDown()){
+			return FACE_DOWN_CARD.toString();
+		}
 		return rank.getShortName() + "-" + suit.getShortName();
 	}
 

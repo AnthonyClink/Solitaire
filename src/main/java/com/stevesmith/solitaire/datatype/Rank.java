@@ -13,7 +13,19 @@ public enum Rank {
 	TEN("10", "Ten"),
 	JACK("J", "Jack"),
 	QUEEN("Q", "Queen"),
-	KING("K", "King");
+	KING("K", "King"),
+	BLANK("B", "Blank"),
+	FACE("F", "Face");
+	
+	public static final Rank[] standardRanks(){
+		Rank[] ranks = Rank.values();
+		Rank[] retval = new Rank[ranks.length - 2];
+		for(int i = 0; i < ranks.length - 2; i++){
+			retval[i] = ranks[i];
+		}
+		
+		return retval;
+	}
 	
 	private String shortName;
 	private String fullName;

@@ -1,6 +1,5 @@
 package com.stevesmith.solitaire.datatype;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,8 +30,7 @@ public class Deck {
 	}
 
 	public Card drawCard() {
-		Card card = getTopCard();
-		cards.remove(card);
+		Card card = removeTopCard();
 		return card;
 	}
 	
@@ -48,6 +46,15 @@ public class Deck {
 	public Card getTopCard() {
 		try{
 			Card card = cards.get(getSize() - 1);
+			return card;
+		}catch(ArrayIndexOutOfBoundsException e){
+			return NO_CARD;
+		}
+	}
+	
+	private Card removeTopCard(){
+		try{
+			Card card = getTopCard();
 			cards.remove(card);
 			return card;
 		}catch(ArrayIndexOutOfBoundsException e){

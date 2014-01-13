@@ -124,8 +124,8 @@ public class DeckTest {
 	private Deck createDeck(){
 		Injector injector = Guice.createInjector(new ProductionModule());
 		deck = injector.getInstance(Deck.class);
-		for(Rank rank : Rank.values()){
-			for(Suit suit : Suit.values()){
+		for(Rank rank : Rank.standardRanks()){
+			for(Suit suit : Suit.standardSuits()){
 				Card card = new Card(rank, suit, false);
 				deck.addCard(card);
 			}
