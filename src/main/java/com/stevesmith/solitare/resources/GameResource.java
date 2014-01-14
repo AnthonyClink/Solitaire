@@ -40,13 +40,27 @@ public class GameResource {
     	return gameService.getGameBoard();
     }
     
-    @PUT
+    @GET
     @Path("gameboard/{id}/pile/{pileId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Deck getPile(@PathParam("id") String gameId, @PathParam("pileId") String pileId){
     	info("getting " + pileId);
     	return gameService.getGameBoard().getGameSpot(GameSpot.valueOf(pileId));
     }
+    
+    @PUT
+    @Path("gameboard/{id}/moveCard/{index}/from/{fromPileId}/to/{toPileId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public GameBoard moveCard(@PathParam("fromPileId") GameSpot fromPile, @PathParam("toPileId") GameSpot toPile,
+    							@PathParam("index") int cardIndexNumber, @PathParam("id") int id){
+    	int numberOfCardsToMove = gameService.getGameBoard().getGameSpot(fromPile).getSize() - cardIndexNumber;
+    	gameService.moveCard(fromPile, toPile, numberOfCardsToMove);
+    	return gameService.getGameBoard();
+    }
+    
+    //http://localhost:8080/solitare/gameboard/04/moveCard/1/from/reg2/to/diamonds
+    
+    
     
     private void info(String message){
     	//LOGGER.info(message);

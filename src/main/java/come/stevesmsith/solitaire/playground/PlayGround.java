@@ -37,33 +37,9 @@ public class PlayGround {
 	
 	
 	
-	public static void main(String [] args) throws ServerFailedToStartException{
-		Injector injector = Guice.createInjector(new ProductionModule());
-		
-		Server server = new Server(8080);
-		
-		server.setUncheckedPrintWriter(false);
-		
-		ServletContextHandler handler = new ServletContextHandler();
-		handler.setContextPath("/");
-		
-		//note, jetty does not like to start without a servlet. Since guice is handling all the servlet filtering
-		//this servlet will never be called unless guice fails to load a path correctly.
-        handler.addServlet(new ServletHolder(new InvalidRequestServlet()), "/*");
-
-        FilterHolder guiceFilter = new FilterHolder(injector.getInstance(GuiceFilter.class));
-        handler.addFilter(guiceFilter, "/*", EnumSet.allOf(DispatcherType.class));
-
-        server.setHandler(handler);
-        
-        try{
-        	server.start();
-        }catch(Exception e){
-        	throw new ServerFailedToStartException(e);
-        }		
-	}
 	
-	public static void main2(String [] args) throws NoCardsOnPileException{
+	
+	public static void main(String [] args) throws NoCardsOnPileException{
 		
 //		ruleService = new RuleService();
 //		gameService = new GameService(ruleService, new GameBoard(new HashMap<GameSpot, Deck>()));

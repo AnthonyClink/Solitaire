@@ -95,9 +95,12 @@ public class GameService {
 		}return deck;
 	}
 
-	public void moveCard(GameSpot fromSpot, GameSpot toSpot, int numberOfCardsToMove) {
+	public void moveCard(GameSpot fromSpot, GameSpot toSpot, int numberOfCardsToMove){
 		Deck fromDeck = gameBoard.getGameSpot(fromSpot);
 		Deck toDeck = gameBoard.getGameSpot(toSpot);
+		
+		if(fromDeck.getSize() == 0) return;
+		
 		if(ruleService.isGoingToResolutionPile(toSpot)){
 			movingToResPile(fromSpot, toSpot, numberOfCardsToMove);
 		}else{
@@ -233,9 +236,10 @@ public class GameService {
 	}
 	
 	private Card getFromCard(Deck fromCards, int numberOfCardsToMove) {
-		Card fromCard = fromCards.getCards().get(0);
-		Card copyCard = fromCards.copyCard(fromCard);
-		return copyCard;
+		if(fromCards.getSize() == 0){
+			return null;
+		}
+		return  fromCards.getCards().get(0);
 		
 	}
 	
