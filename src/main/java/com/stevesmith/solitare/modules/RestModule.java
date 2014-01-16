@@ -16,22 +16,23 @@ public class RestModule extends ServletModule{
 		
 		@Override
 	    protected void configureServlets() {
+			// bind game resource so the guice container can pick it up
 			bind(GameResource.class);
 
-	        // hook Jersey into Guice Servlet
+	        // hook Guice into Jersy Servlet
 	        bind(GuiceContainer.class);
 
 	        // hook Jackson into Jersey as the POJO <-> JSON mapper
+	        //(jersy needs this class in the constructor, this allows guice to know what to inject there)
 	        bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
 
+	        //haven't done anything wit this yet.
 	        Map<String, String> guiceContainerConfig = new HashMap<String, String>();
 	        
-	        //guiceContainerConfig.put(ResourceConfig.PROPERTY_RESOURCE_FILTER_FACTORIES,
-	        //    HttpStatusCodeMetricResourceFilterFactory.class.getCanonicalName());
-	        
-	        
+	        //have guice take care of urls
 	        serve("/*").with(GuiceContainer.class, guiceContainerConfig);
 	        
+	        //lets javascript talk to us
 	        filter("/*").through(CorsFilter.class);
 	    }
 	}

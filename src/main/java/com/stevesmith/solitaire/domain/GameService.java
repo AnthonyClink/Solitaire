@@ -119,6 +119,7 @@ public class GameService {
 					}
 				}else{
 					fromDeck.getCards().addAll(fromCards.getCards());
+					
 				}
 			}	
 		}
@@ -175,6 +176,7 @@ public class GameService {
 		for(int i = 0; i < numberOfCardsToMove; i++){
 			Card card = fromDeck.getTopCard();
 			fromCards.getCards().add(0, card);
+			fromDeck.removeCard(card);
 		}
 		return fromCards;
 	}

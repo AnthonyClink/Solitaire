@@ -11,6 +11,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
+import com.stevesmith.solitaire.domain.GameService;
 import com.stevesmith.solitare.modules.ProductionModule;
 import com.stevesmith.solitare.web.InvalidRequestServlet;
 import com.stevesmith.solitare.web.ServerFailedToStartException;
@@ -21,8 +22,6 @@ public class Solitaire {
 		Injector injector = Guice.createInjector(new ProductionModule());
 		
 		Server server = new Server(8080);
-		
-		server.setUncheckedPrintWriter(false);
 		
 		ServletContextHandler handler = new ServletContextHandler();
 		handler.setContextPath("/");
