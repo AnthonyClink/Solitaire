@@ -23,7 +23,7 @@ public class Solitaire {
 		
 		Server server = new Server(8080);
 		
-		//added some comments to see if the Jenkins build server will pick up the git hub changes
+		//added some comments to see if the Jenkins build server will pick up the git hub changes 
 		
 		ServletContextHandler handler = new ServletContextHandler();
 		handler.setContextPath("/");
