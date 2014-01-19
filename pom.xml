@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
+    <!-- this is a test change to the pom to see if jenkins builds it correctly -->
     <!-- dependency versions -->
     <dep.slf4j>1.6.4</dep.slf4j>
     <dep.logback>1.0.1</dep.logback>
