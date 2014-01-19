@@ -7,7 +7,6 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
 import com.stevesmith.solitare.resources.GameResource;
-import com.stevesmith.solitare.resources.TodoResource;
 import com.stevesmith.solitare.web.CorsFilter;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
@@ -19,8 +18,6 @@ public class RestModule extends ServletModule{
 	    protected void configureServlets() {
 			// bind game resource so the guice container can pick it up
 			bind(GameResource.class);
-			
-			bind(TodoResource.class);
 
 	        // hook Guice into Jersy Servlet
 	        bind(GuiceContainer.class);

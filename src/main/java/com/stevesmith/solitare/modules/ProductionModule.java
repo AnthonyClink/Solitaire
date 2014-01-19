@@ -1,5 +1,6 @@
 package com.stevesmith.solitare.modules;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import com.google.inject.Provides;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.GameSpot;
+
 
 public class ProductionModule extends AbstractModule{
 

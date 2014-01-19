@@ -12,13 +12,12 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.stevesmith.solitaire.datatype.Deck;
-import com.stevesmith.solitaire.datatype.DrawDiscardComposite;
 import com.stevesmith.solitaire.datatype.GameBoard;
 import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.domain.GameService;
 
 @Singleton
-@Path("solitare")
+@Path("solitaire")
 @Produces(MediaType.APPLICATION_JSON)
 public class GameResource {
 
@@ -33,44 +32,16 @@ public class GameResource {
 	}
     
     @GET
-    @Path("gameboard/{id}")
+    @Path("helloworld")
     @Produces(MediaType.APPLICATION_JSON)
-    public GameBoard getGameBoard(@PathParam("id") String id){
-    	info("Sending gameboard resource: " + id + " to client");
-    	gameService.newGame();
-    	return gameService.getGameBoard();
-    }
-    
-    @GET
-    @Path("gameboard/{id}/pile/{pileId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Deck getPile(@PathParam("id") String gameId, @PathParam("pileId") String pileId){
-    	info("getting " + pileId);
-    	return gameService.getGameBoard().getGameSpot(GameSpot.valueOf(pileId));
-    }
-    
-    @PUT
-    @Path("gameboard/{id}/movecard/{index}/from/{fromPileId}/to/{toPileId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public GameBoard moveCard(@PathParam("fromPileId") GameSpot fromPile, @PathParam("toPileId") GameSpot toPile,
-    							@PathParam("index") int cardIndexNumber, @PathParam("id") int id){
-    	int numberOfCardsToMove = gameService.getGameBoard().getGameSpot(fromPile).getSize() - cardIndexNumber;
-    	gameService.moveCard(fromPile, toPile, numberOfCardsToMove);
-    	return gameService.getGameBoard();
-    }
-    
-    @GET
-    @Path("gameboard/{id}/drawcard")
-    @Produces(MediaType.APPLICATION_JSON)
-    public DrawDiscardComposite drawCard(){
-    	gameService.drawCard();
+    public String getHelloWorld(){
     	
-    	return createComposite();
+    	return "hello world";
     }
     
-    private DrawDiscardComposite createComposite(){
-    	return new DrawDiscardComposite(gameService.getGameBoard().getDrawDeck(), gameService.getGameBoard().getDiscardDeck());
-    }
+  
+    
+  
     
     //http://localhost:8080/solitare/gameboard/04/moveCard/1/from/reg2/to/diamonds
     

@@ -4,7 +4,6 @@ public enum GameSpotType {
 
 	REGULAR,
 	RESOLUTION,
-	DRAW,
-	DISCARDPILE;
+	STOCK;
 	
 }

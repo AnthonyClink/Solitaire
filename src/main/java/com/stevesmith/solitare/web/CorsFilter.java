@@ -1,5 +1,6 @@
 package com.stevesmith.solitare.web;
 
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -11,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.inject.Singleton;
+
 
 @Singleton
 public class CorsFilter implements Filter{
