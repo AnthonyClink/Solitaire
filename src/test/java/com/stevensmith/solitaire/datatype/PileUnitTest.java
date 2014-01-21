@@ -10,7 +10,7 @@ import com.google.common.collect.Lists;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.Pile;
 
-public class PileUnitTests {
+public class PileUnitTest {
 	
 	@Test
 	public void assureThatPilesHaveInjectableConstructors(){

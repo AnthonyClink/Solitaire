@@ -14,7 +14,7 @@ import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Suit;
 
-public class DeckServiceUnitTests {
+public class DeckServiceUnitTest {
 	
 	@Test
 	public void ensureDeckServiceCanCreateANewEmptyPile(){
