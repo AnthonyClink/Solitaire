@@ -1,5 +1,15 @@
 package com.stevesmith.solitaire.datatype;
 
-public class Deck {
+import java.util.List;
+
+public class Deck extends Pile{
+
 	
+	
+	
+	
+	public Deck(List<Card> cards) {
+		super(cards);
+		
+	}
 }
