@@ -1,4 +1,4 @@
-package com.stevesmith.solitare.web;
+package com.stevesmith.solitaire.web;
 
 
 import javax.servlet.ServletException;

@@ -11,14 +11,15 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceFilter;
-import com.stevesmith.solitare.modules.ProductionModule;
-import com.stevesmith.solitare.web.InvalidRequestServlet;
-import com.stevesmith.solitare.web.ServerFailedToStartException;
+import com.stevesmith.solitaire.web.InvalidRequestServlet;
+import com.stevesmith.solitaire.web.ServerFailedToStartException;
+import com.stevesmith.solitare.modules.ProductionRestModule;
+
 
 public class Solitaire {
 	
 	public static void main(String [] args) throws ServerFailedToStartException{
-		Injector injector = Guice.createInjector(new ProductionModule());
+		Injector injector = Guice.createInjector(new ProductionRestModule());
 		
 		Server server = new Server(8080);
 		
@@ -26,7 +27,7 @@ public class Solitaire {
 		//added some comments to see if the Jenkins build server will pick up the git hub changes
 		
 		ServletContextHandler handler = new ServletContextHandler();
-		handler.setContextPath("/");
+		handler.setContextPath("/solitaire");
 		
 		//note, jetty does not like to start without a servlet. Since guice is handling all the servlet filtering
 		//this servlet will never be called unless guice fails to load a path correctly.

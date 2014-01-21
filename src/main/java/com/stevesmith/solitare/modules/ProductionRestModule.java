@@ -6,16 +6,19 @@ import java.util.Map;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.google.inject.Scopes;
 import com.google.inject.servlet.ServletModule;
+import com.stevesmith.solitaire.web.CorsFilter;
 import com.stevesmith.solitare.resources.GameResource;
-import com.stevesmith.solitare.web.CorsFilter;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
 
 
-public class RestModule extends ServletModule{
+public class ProductionRestModule extends ServletModule{
 		
 		@Override
 	    protected void configureServlets() {
+			
+			install(new ProductionModule());
+			
 			// bind game resource so the guice container can pick it up
 			bind(GameResource.class);
 

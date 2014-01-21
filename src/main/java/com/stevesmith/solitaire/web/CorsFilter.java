@@ -1,4 +1,4 @@
-package com.stevesmith.solitare.web;
+package com.stevesmith.solitaire.web;
 
 
 import java.io.IOException;

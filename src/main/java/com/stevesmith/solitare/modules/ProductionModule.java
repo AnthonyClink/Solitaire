@@ -17,7 +17,7 @@ public class ProductionModule extends AbstractModule{
 
 	@Override
 	protected void configure() {
-		install(new RestModule());
+
 	}
 	
 	@Provides

@@ -24,6 +24,20 @@
   </properties>
 
   <dependencies>
+      
+       <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-server</artifactId>
+      <version>${dep.jetty}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-servlet</artifactId>
+      <version>${dep.jetty}</version>
+    </dependency>
+      
+      
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
@@ -121,18 +135,6 @@
 	    <artifactId>jaxb-impl</artifactId>
 	    <version>${dep.jaxb}</version>
 	</dependency>
-	
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>${dep.jetty}</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-servlet</artifactId>
-      <version>${dep.jetty}</version>
-    </dependency>
     
     <dependency>
 
@@ -179,7 +181,6 @@
 		    <webXml>src/main/resources/WEB-INF/web.xml</webXml>        
 		  </configuration>
 	</plugin>      
-      
     </plugins>
 
    </build>

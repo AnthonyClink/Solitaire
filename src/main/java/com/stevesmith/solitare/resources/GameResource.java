@@ -9,10 +9,11 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.servlet.RequestScoped;
 import com.stevesmith.solitaire.domain.GameService;
 
 @Singleton
-@Path("solitaire")
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 public class GameResource {
 
