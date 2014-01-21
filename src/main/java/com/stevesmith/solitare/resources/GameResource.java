@@ -1,9 +1,7 @@
 package com.stevesmith.solitare.resources;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -11,9 +9,6 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.stevesmith.solitaire.datatype.Deck;
-import com.stevesmith.solitaire.datatype.GameBoard;
-import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.domain.GameService;
 
 @Singleton

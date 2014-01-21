@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.stevesmith</groupId>
   <artifactId>solitaire</artifactId>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   
   <properties>
@@ -169,29 +170,15 @@
         </configuration>
       </plugin>
 
-      <plugin>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>2.3</version>
-          <executions>
-              <execution>
-                  <id>jar-with-dependencies</id>
-                  <phase>package</phase>
-                  <goals>
-                      <goal>single</goal>
-                  </goals>
-                  <configuration>
-                      <descriptorRefs>
-                          <descriptorRef>jar-with-dependencies</descriptorRef>
-                      </descriptorRefs>
-                      <archive>
-                          <manifest>
-                              <mainClass>com.teamlazerbeez.http.HttpServerMain</mainClass>
-                          </manifest>
-                      </archive>
-                  </configuration>
-              </execution>
-          </executions>
-      </plugin>
+	  <plugin>            
+	  	<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-war-plugin</artifactId>
+		    <version>2.4</version>
+		  <configuration>
+		    <webXml>src/main/resources/WEB-INF/web.xml</webXml>        
+		  </configuration>
+	</plugin>      
+      
     </plugins>
 
    </build>
