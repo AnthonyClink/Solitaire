@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.servlet.RequestScoped;
-import com.stevesmith.solitaire.domain.GameService;
+import com.stevesmith.solitaire.services.GameService;
 
 @Singleton
 @Path("/")

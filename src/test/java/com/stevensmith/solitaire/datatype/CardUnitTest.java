@@ -6,12 +6,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.crypto.interfaces.PBEKey;
-
 import org.junit.Test;
 
 import com.google.common.collect.Maps;
 import com.stevesmith.solitaire.datatype.Card;
+import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Color;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
@@ -21,7 +20,7 @@ public class CardUnitTest {
 	@Test
 	public void basicMetaDataForACardIsSupported(){
 		Card ace = newAceOfSpades();
-		Card aceOfHearts = new Card(Rank.ACE, Suit.HEART);
+		Card aceOfHearts = new Card(Rank.ACE, Suit.HEART, CardState.FACE_UP);
 		
 		assertEquals(Rank.ACE, ace.getRank());
 		assertEquals(Suit.SPADE, ace.getSuit());
@@ -29,7 +28,7 @@ public class CardUnitTest {
 		assertTrue(ace.isBlack());
 		assertFalse(ace.isRed());
 		assertTrue(ace.isOppositeColor(aceOfHearts));
-
+		assertFalse(ace.isFaceDown());
 	}
 	
 	@Test
@@ -43,23 +42,20 @@ public class CardUnitTest {
 	
 	@Test
 	public void cardIsHashedInAWayToAllowCardsToBeUsedAsKeys(){
-		Set<Card> cardSet = new HashSet<Card>();
-		
+
 		Card ace1 = newAceOfSpades();
 		Card ace2 = newAceOfSpades();
-		
-		cardSet.add(ace1);
-		assertTrue(cardSet.contains(ace2));
 		
 		Map<Card, Object> referenceTestMap = Maps.newHashMap();
 		
 		Object objectForReference = new Object();
 		
 		referenceTestMap.put(ace1, objectForReference);
+		
 		assertEquals(objectForReference, referenceTestMap.get(ace2));
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE);
+		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
 	}
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 import com.stevensmith.solitaire.exceptions.CardDuplicationException;
 import com.stevesmith.solitaire.datatype.Card;
+import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
@@ -20,7 +21,7 @@ public class PileUnitTest {
 	public void assureThatPilesHaveInjectableConstructors(){
 
 		List<Card> cards = Lists.newArrayList();
-		Card card = new Card(Rank.ACE, Suit.SPADE);
+		Card card = new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
 		cards.add(card);
 		Pile pile = new Pile(cards);
 		
@@ -56,7 +57,7 @@ public class PileUnitTest {
 		Pile pile = pileWithOneAceOfSpades();
 		
 		Card aceOfSpades = pile.getCards().get(0);
-		Card aceOfClubs = new Card(Rank.ACE, Suit.SPADE);
+		Card aceOfClubs = new Card(Rank.ACE, Suit.SPADE,CardState.FACE_UP);
 		
 		pile.addCard(aceOfClubs);
 		
@@ -76,7 +77,7 @@ public class PileUnitTest {
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE);
+		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
 	}
 	
 	private Pile pileWithOneAceOfSpades(){

@@ -7,11 +7,13 @@ public class Card {
 	private final Rank rank;
 	private final Suit suit;
 	private int hashCode;
+	private CardState cardState;
 	
-	public Card(Rank rank, Suit suit){
+	public Card(Rank rank, Suit suit, CardState cardState){
 			this.rank = rank;
 			this.suit = suit;
 			this.hashCode = 0;
+			this.cardState = cardState;
 	}
 	
 	public Rank getRank() {
@@ -62,5 +64,17 @@ public class Card {
 		return this.getSuit() == card.getSuit() 
 				&&
 			this.getRank() == card.getRank();
+	}
+
+	public boolean isFaceDown() {
+		return getCardState() == CardState.FACE_DOWN;			
+	}
+	
+	public CardState getCardState() {
+		return cardState;
+	}
+
+	public boolean isFaceUp(){
+		return !isFaceDown();
 	}
 }

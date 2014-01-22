@@ -41,6 +41,7 @@ public class DeckServiceUnitTest {
 				cardsInASuit = Lists.newArrayList();
 			}
 			cardsInASuit.add(card);
+			assertTrue(card.isFaceDown());
 			suitToCards.put(card.getSuit(), cardsInASuit);
 		}
 		

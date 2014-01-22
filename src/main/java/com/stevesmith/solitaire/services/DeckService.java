@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.stevesmith.solitaire.datatype.Card;
+import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
@@ -20,11 +21,10 @@ public class DeckService {
 		List<Card> cards = Lists.newArrayList();
 		for(Suit suit : Suit.standardSuits()){
 			for(Rank rank : Rank.standardRanks()){
-				cards.add(new Card(rank, suit));
+				cards.add(new Card(rank, suit, CardState.FACE_DOWN));
 			}
 		}
 		
 		return new Deck(cards);
-	}
-
+	}	
 }
