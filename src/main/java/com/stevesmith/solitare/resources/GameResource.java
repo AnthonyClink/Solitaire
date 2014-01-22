@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.servlet.RequestScoped;
 import com.stevesmith.solitaire.services.GameService;
 
 @Singleton
@@ -20,32 +19,17 @@ public class GameResource {
 	private static final Logger LOGGER = Logger.getLogger(GameResource.class);
 	private GameService gameService;
 
-	
 	@Inject
 	public GameResource(GameService gameService){
-		this.gameService = gameService;
-		
+		this.gameService = gameService;		
 	}
     
     @GET
     @Path("helloworld")
     @Produces(MediaType.APPLICATION_JSON)
     public String getHelloWorld(){
-    	
     	return "hello world";
     }
     
-  
-    
-  
-    
     //http://localhost:8080/solitare/gameboard/04/moveCard/1/from/reg2/to/diamonds
-    
-    
-    
-    private void info(String message){
-    	//LOGGER.info(message);
-    	System.out.println(message);
-    }
-    
 }
