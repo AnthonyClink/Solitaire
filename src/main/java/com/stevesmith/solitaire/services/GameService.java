@@ -97,10 +97,19 @@ public class GameService {
 		return game;
 		
 	}
-
+	
 	public Game createNewSolitaireGame() {
 		Game game = dealNewGame(GameType.STANDARD_SOLITAIRE);
 		return game;
+	}
+	
+	public Game saveGame(Game game){
+		gameRespository.saveGame(game);
+		return game;
+	}
+
+	public Game updateGame(Game game) {
+		return gameRespository.updateGame(game);
 	}
 	
 }

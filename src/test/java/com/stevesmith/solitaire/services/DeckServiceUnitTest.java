@@ -16,10 +16,6 @@ import com.stevesmith.solitaire.datatype.Suit;
 
 public class DeckServiceUnitTest {
 	
-	
-	
-	
-	
 	@Test
 	public void ensureDeckServiceCanCreateANewEmptyPile(){
 		DeckService deckService = newDeckService();
@@ -52,7 +48,7 @@ public class DeckServiceUnitTest {
 		int suitCount = 0;
 		
 		for(Map.Entry<Suit, List<Card>> row : suitToCards.entrySet()){
-			suitCount++;
+			suitCount++; 
 			assertEquals(13, row.getValue().size());
 		}
 		

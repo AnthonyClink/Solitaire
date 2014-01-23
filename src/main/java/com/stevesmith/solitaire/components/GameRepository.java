@@ -2,10 +2,13 @@ package com.stevesmith.solitaire.components;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.stevensmith.solitaire.exceptions.DuplicateGameException;
 import com.stevensmith.solitaire.exceptions.GameNotCreatedException;
+import com.stevensmith.solitaire.exceptions.InvalidOrBlankGameIdProvidedException;
 import com.stevesmith.solitaire.datatype.Game;
 
 @Singleton
@@ -25,10 +28,11 @@ public class GameRepository {
 	 * @return this
 	 */
 	public GameRepository saveGame(Game game) {
+		
 		Game savedGame = gameRegistry.get(game.getId());
 		
-		if(savedGame != null){
-			throw new DuplicateGameException(game);
+		if(StringUtils.isBlank(game.getId()) || savedGame != null){
+			throw new InvalidOrBlankGameIdProvidedException();
 		}
 		
 		gameRegistry.put(game.getId(), game);	

@@ -11,28 +11,11 @@ import com.google.common.collect.Lists;
 import com.stevensmith.solitaire.exceptions.CardDuplicationException;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
-import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
-import com.stevesmith.solitaire.services.DeckService;
 
 public class PileUnitTest {
-	
-	@Test
-	public void assureThatPilesHaveInjectableConstructors(){
-
-		List<Card> cards = Lists.newArrayList();
-		Card card = new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
-		cards.add(card);
-		Pile pile = new Pile(cards);
-		
-		List<Card> storedCards = pile.getCards();
-		Card storedCard = storedCards.get(0);
-		
-		assertTrue(cards != storedCards);
-		assertTrue(card == storedCard);
-	}
 	
 	@Test
 	public void ensureThatWeCanAddTwoCardsThatAreIdenticalToThePile(){

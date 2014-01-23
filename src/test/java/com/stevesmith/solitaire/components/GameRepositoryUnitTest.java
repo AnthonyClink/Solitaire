@@ -13,6 +13,7 @@ import com.google.common.collect.Maps;
 import com.stevensmith.solitaire.exceptions.DuplicateGameException;
 import com.stevensmith.solitaire.exceptions.GameNotCreatedException;
 import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
+import com.stevensmith.solitaire.exceptions.InvalidOrBlankGameIdProvidedException;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Game;
@@ -38,7 +39,7 @@ public class GameRepositoryUnitTest {
 		assertEquals(game, gameData.get(DEFAULT_GAME_ID));
 	}
 	
-	@Test(expected = DuplicateGameException.class)
+	@Test(expected = InvalidOrBlankGameIdProvidedException.class)
 	public void ensureSaveActionDoesNotOverrideAPreviouslySavedGame(){
 		GameRepository gameRepository = newGameRepository(newGame());
 		Game possibleOverwrite = newGame();
@@ -49,6 +50,13 @@ public class GameRepositoryUnitTest {
 	public void ensureAGameMustBeCreatedInOrderToUpdateIt(){
 		GameRepository gameRepository = newGameRepository();
 		gameRepository.updateGame(newGame());
+	}
+	
+	@Test(expected = InvalidOrBlankGameIdProvidedException.class)
+	public void ensureThatAGameToBeSavedHasAValidId(){
+		GameRepository repo = newGameRepository();
+		Game game = new Game(null, null);
+		repo.saveGame(game);
 	}
 	
 	@Test

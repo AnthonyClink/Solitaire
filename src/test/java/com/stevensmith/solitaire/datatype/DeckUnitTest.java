@@ -8,15 +8,21 @@ import java.util.List;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;
+import com.stevensmith.solitaire.exceptions.NoMoreCardsException;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Suit;
 import com.stevesmith.solitaire.datatype.Rank;
-import com.stevesmith.solitaire.services.DeckService;
 
 public class DeckUnitTest {
 
+	@Test(expected = NoMoreCardsException.class)
+	public void ensureDrawCardThrowsNoMoreCardsException(){
+		Deck deck = getNewEmptyDeck();
+		deck.drawCard();
+	}
+	
 	@Test
 	public void ensureDrawCardRemovesCardDoesNotChangeCardState(){
 		
@@ -58,6 +64,11 @@ public class DeckUnitTest {
 		assertFalse(allElementsAreTheSame);
 		
 	}
+	private Deck getNewEmptyDeck(){
+		List<Card> cards = Lists.newArrayList();
+		return new Deck(cards);
+	}
+	
 	
 	private Deck getDeckWithTwoCards(){
 		List<Card> cards = Lists.newArrayList();

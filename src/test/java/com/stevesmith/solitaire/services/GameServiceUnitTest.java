@@ -1,4 +1,4 @@
-package com.stevensmith.solitaire.services;
+package com.stevesmith.solitaire.services;
 
 import static org.junit.Assert.*;
 
@@ -31,9 +31,13 @@ public class GameServiceUnitTest {
 		 GameService gameService = createNewGameService();
 		 Game game = gameService.dealNewGame(GameType.STANDARD_SOLITAIRE);
 		 
+		 Pile pile5 = game.getReg5Pile();
+		 
 		 assertEquals(1, game.getPile(GameSpot.REGULAR_1).getSize());
 		 assertEquals(5,  game.getPile(GameSpot.REGULAR_5).getSize());
 		 assertEquals(24, game.getPile(GameSpot.DRAW).getSize());
+		 assertTrue(pile5.getTopCard().isFaceUp());
+		 assertTrue(pile5.getCards().get(3).isFaceDown());
 	 }
 	
 	@Test
