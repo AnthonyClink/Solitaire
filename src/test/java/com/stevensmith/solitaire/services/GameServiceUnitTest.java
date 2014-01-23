@@ -9,12 +9,23 @@ import org.junit.Test;
 import com.stevesmith.solitaire.components.GameRepository;
 import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.datatype.GameSpot;
+import com.stevesmith.solitaire.datatype.GameType;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.services.DeckService;
 import com.stevesmith.solitaire.services.GameService;
 
 public class GameServiceUnitTest {
 
+	
+	@Test
+	 public void ensureGameServiceCanDealStandardSolitairGame(){
+		 GameService gameService = createNewGameService();
+		 gameService.dealNewGame(GameType.STANDARD_SOLITAIRE);
+		 
+		 assertEquals(1, gameService.getGameBoard("0").getPile(GameSpot.REGULAR_1).getSize());
+		 assertEquals(5, gameService.getGameBoard("0").getPile(GameSpot.REGULAR_5).getSize());
+		 assertEquals(24, gameService.getGameBoard("0").getPile(GameSpot.DRAW).getSize());
+	 }
 	
 	@Test
 	public void ensureGameServiceCanCreateSolitaireGameBoard(){

@@ -38,4 +38,15 @@ public class Pile {
 		  return this;
 		
 	}
+	
+	public Card getTopCard() {
+		Card card = cards.get(cards.size() - 1);
+		cards.remove(card);
+		return card;
+	}
+
+	public void addCards(List<Card> newCards) {
+		cards.addAll(newCards);
+		
+	}
 }

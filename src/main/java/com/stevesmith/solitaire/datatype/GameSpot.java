@@ -32,7 +32,11 @@ public enum GameSpot {
 
 	public static List<GameSpot> getGameSpotsByType(GameSpotType gameSpotType){
 		List<GameSpot> retval = Lists.newArrayList();
-		
+		for(GameSpot gameSpot : GameSpot.values()){
+				if(gameSpot.getGameSpotType() == GameSpotType.REGULAR){
+					retval.add(gameSpot);
+				}
+		}
 		return retval;
 	}
 	

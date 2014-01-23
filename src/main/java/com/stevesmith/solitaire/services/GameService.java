@@ -4,8 +4,12 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.stevesmith.solitaire.components.GameRepository;
+import com.stevesmith.solitaire.datatype.Card;
+import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.datatype.GameSpot;
+import com.stevesmith.solitaire.datatype.GameSpotType;
+import com.stevesmith.solitaire.datatype.GameType;
 import com.stevesmith.solitaire.datatype.Pile;
 
 public class GameService {
@@ -42,6 +46,42 @@ public class GameService {
 
 	public void deleteGameBoard(String gameId) {
 		gameRespository.deleteGame(gameId);
+	}
+
+	public Game dealNewGame(GameType gameType) {
+		Game game = createGame();
+		dealGame(game, gameType);
+		return game;
+	}
+
+	private void dealGame(Game game, GameType gameType) {
+		switch  (gameType){
+			case STANDARD_SOLITAIRE:
+				dealStandardSolitairGame(game);
+		
+		}
+	
+		
+	}
+
+	private Game dealStandardSolitairGame(Game game) {
+		Deck deck = deckService.getStandard52CardDeck();
+		for(int row = 0; row < 7; row++){
+			for(int column = row; column < 7; column++){				
+				GameSpot gameSpot = GameSpot.getGameSpotsByType(GameSpotType.REGULAR).get(column);
+				Card card;
+				if(column == row){
+					card = deck.drawCard();
+				}else{
+					card = deck.getTopCard();
+				}
+				game.getPile(gameSpot).addCard(card);
+			}
+		}
+		game.getPile(GameSpot.DRAW).addCards(deck.getCards());
+		
+		return game;
+		
 	}
 	
 }

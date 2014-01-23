@@ -77,4 +77,9 @@ public class Card {
 	public boolean isFaceUp(){
 		return !isFaceDown();
 	}
+
+	public void turnFaceUp() {
+		cardState = CardState.FACE_UP;
+		
+	}
 }

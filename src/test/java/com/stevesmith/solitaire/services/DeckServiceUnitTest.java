@@ -16,6 +16,28 @@ import com.stevesmith.solitaire.datatype.Suit;
 
 public class DeckServiceUnitTest {
 	
+	
+	@Test
+	public void ensureGetTopCardDoesNotChangeStateRemovesRemovesCard(){
+		DeckService deckService = newDeckService();
+		Deck deck = deckService.getStandard52CardDeck();
+		Card card = deck.getTopCard();
+		assertTrue(card.isFaceDown());
+		Card nextCard = deck.getTopCard();
+		assertFalse(card == nextCard);
+		
+	}
+	
+	@Test
+	public void ensureDrawTurnsCardFaceUpRemovesCard(){
+		DeckService deckService = newDeckService();
+		Deck deck = deckService.getStandard52CardDeck();
+		Card card = deck.drawCard();
+		assertTrue(card.isFaceUp());
+		Card nextCard = deck.drawCard();
+		assertFalse(card == nextCard);
+	}
+	
 	@Test
 	public void ensureDeckServiceCanCreateANewEmptyPile(){
 		DeckService deckService = newDeckService();
