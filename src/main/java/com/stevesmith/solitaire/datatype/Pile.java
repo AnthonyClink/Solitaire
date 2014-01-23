@@ -40,13 +40,18 @@ public class Pile {
 	}
 	
 	public Card getTopCard() {
-		Card card = cards.get(cards.size() - 1);
-		cards.remove(card);
-		return card;
+		if(cards.size() ==0){
+			return null;
+		}
+		return cards.get(cards.size() - 1);
 	}
 
 	public void addCards(List<Card> newCards) {
 		cards.addAll(newCards);
 		
+	}
+	
+	protected List<Card> getInternalData(){
+		return cards;
 	}
 }

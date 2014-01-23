@@ -11,6 +11,8 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.stevensmith.solitaire.exceptions.DuplicateGameException;
+import com.stevensmith.solitaire.exceptions.GameNotCreatedException;
+import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Game;
@@ -18,7 +20,6 @@ import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
-import com.stevesmith.solitaire.expectations.GameNotCreatedException;
 
 public class GameRepositoryUnitTest {
 	
@@ -51,7 +52,7 @@ public class GameRepositoryUnitTest {
 	}
 	
 	@Test
-	public void ensureGameRepositoryCanUpdateAGame(){
+	public void ensureGameRepositoryCanUpdateAGame() throws PileNotInitializedException{
 		
 		Game game = newGame();
 		

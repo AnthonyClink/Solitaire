@@ -10,6 +10,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.Deck;
+import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.datatype.GameSpot;
 
 
@@ -24,6 +25,11 @@ public class ProductionModule extends AbstractModule{
 	public Map<GameSpot, Deck> gameBoardMap(){
 		Map<GameSpot, Deck> gameMap = Maps.newHashMap();
 		return gameMap;
+	}
+	
+	@Provides
+	public Map<String, Game> gameData(){
+		return Maps.newHashMap();
 	}
 	
 	@Provides

@@ -2,33 +2,42 @@ package com.stevensmith.solitaire.services;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
+import com.google.common.collect.Lists;
+import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
 import com.stevesmith.solitaire.components.GameRepository;
+import com.stevesmith.solitaire.datatype.Card;
+import com.stevesmith.solitaire.datatype.CardState;
+import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.datatype.GameType;
 import com.stevesmith.solitaire.datatype.Pile;
+import com.stevesmith.solitaire.datatype.Rank;
+import com.stevesmith.solitaire.datatype.Suit;
 import com.stevesmith.solitaire.services.DeckService;
 import com.stevesmith.solitaire.services.GameService;
 
 public class GameServiceUnitTest {
-
 	
 	@Test
-	 public void ensureGameServiceCanDealStandardSolitairGame(){
+	 public void ensureGameServiceCanDealStandardSolitaireGame() throws PileNotInitializedException{
 		 GameService gameService = createNewGameService();
-		 gameService.dealNewGame(GameType.STANDARD_SOLITAIRE);
+		 Game game = gameService.dealNewGame(GameType.STANDARD_SOLITAIRE);
 		 
-		 assertEquals(1, gameService.getGameBoard("0").getPile(GameSpot.REGULAR_1).getSize());
-		 assertEquals(5, gameService.getGameBoard("0").getPile(GameSpot.REGULAR_5).getSize());
-		 assertEquals(24, gameService.getGameBoard("0").getPile(GameSpot.DRAW).getSize());
+		 assertEquals(1, game.getPile(GameSpot.REGULAR_1).getSize());
+		 assertEquals(5,  game.getPile(GameSpot.REGULAR_5).getSize());
+		 assertEquals(24, game.getPile(GameSpot.DRAW).getSize());
 	 }
 	
 	@Test
-	public void ensureGameServiceCanCreateSolitaireGameBoard(){
+	public void ensureGameServiceCanCreateSolitaireGameBoard() throws PileNotInitializedException{
 		Game gameBoard = createNewGameService().createGame();
 		
 		assertEquals("0", gameBoard.getId());
@@ -43,11 +52,16 @@ public class GameServiceUnitTest {
 
 	@Test
 	public void endusreGameServiceCanRetrieveGameBoardsById(){
-		GameService gameService = createNewGameService();
 		
-		Game gameBoard = gameService.createGame();
+		Map<String, Game> gameData = new HashMap<String, Game>();
+		GameRepository gameRepo = new GameRepository(gameData);
 		
-		assertTrue(gameBoard == gameService.getGameBoard("0"));
+		Game game = new Game("0", null);
+		gameData.put("0",	game);
+		
+		GameService gameService = new GameService(null,  null, gameRepo);
+		
+		assertTrue(game == gameService.getGameBoard("0"));
 	}
 	
 	@Test

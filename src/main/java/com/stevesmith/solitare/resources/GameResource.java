@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.services.GameService;
 
 @Singleton
@@ -23,13 +24,19 @@ public class GameResource {
 	public GameResource(GameService gameService){
 		this.gameService = gameService;		
 	}
-    
+
     @GET
-    @Path("helloworld")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getHelloWorld(){
-    	return "hello world";
-    }
+    public Game createNewSolitaireGame(){
+    	return gameService.createNewSolitaireGame();
+    }	
+	
+//    @GET
+//    @Path("solitaire/{gameId}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Game getSolitaireGame(String gameId){
+//    	return gameService.getGameBoard(gameId);
+//    }
     
     //http://localhost:8080/solitare/gameboard/04/moveCard/1/from/reg2/to/diamonds
 }

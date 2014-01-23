@@ -11,9 +11,11 @@ import com.google.common.collect.Lists;
 import com.stevensmith.solitaire.exceptions.CardDuplicationException;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
+import com.stevesmith.solitaire.datatype.Deck;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
+import com.stevesmith.solitaire.services.DeckService;
 
 public class PileUnitTest {
 	
@@ -52,6 +54,18 @@ public class PileUnitTest {
 		pile.addCard(ace).addCard(ace);
 	}
 	
+
+	@Test
+	public void ensureGetTopCardDoesNotChangeState(){
+		Pile pile = pileWithOneAceOfSpades();
+		
+		Card card = pile.getTopCard();
+		assertTrue(card.isFaceDown());
+		Card nextCard = pile.getTopCard();
+		assertTrue(card == nextCard);
+		
+	}
+	
 	@Test
 	public void assureThatCardsCanBeProperlyRemovedByObjectReference(){
 		Pile pile = pileWithOneAceOfSpades();
@@ -77,7 +91,7 @@ public class PileUnitTest {
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
+		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_DOWN);
 	}
 	
 	private Pile pileWithOneAceOfSpades(){
@@ -86,5 +100,6 @@ public class PileUnitTest {
 		Pile pile = new Pile(cards);
 		return pile;
 	}
+	
 	
 }

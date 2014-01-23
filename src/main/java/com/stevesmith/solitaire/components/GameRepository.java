@@ -2,14 +2,18 @@ package com.stevesmith.solitaire.components;
 
 import java.util.Map;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.stevensmith.solitaire.exceptions.DuplicateGameException;
+import com.stevensmith.solitaire.exceptions.GameNotCreatedException;
 import com.stevesmith.solitaire.datatype.Game;
-import com.stevesmith.solitaire.expectations.GameNotCreatedException;
 
+@Singleton
 public class GameRepository {
 	
 	private final Map<String, Game> gameRegistry;
 
+	@Inject
 	public GameRepository(Map<String, Game> gameRegistry){
 		this.gameRegistry = gameRegistry;
 	}
