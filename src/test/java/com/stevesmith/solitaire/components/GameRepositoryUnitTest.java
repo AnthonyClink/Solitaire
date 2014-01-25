@@ -39,6 +39,26 @@ public class GameRepositoryUnitTest {
 		assertEquals(game, gameData.get(DEFAULT_GAME_ID));
 	}
 	
+	@Test
+	public void ensureGameRepositoryCanReturnAllSavedGames(){
+		
+		Map<String, Game> gameData = Maps.newHashMap();
+		GameRepository gameRepository = new GameRepository(gameData);
+		
+		Game game = newGame();
+		
+		Game game2 = new Game("2", new HashMap<GameSpot, Pile>());
+		
+		gameData.put("1", game);
+		gameData.put("2", game2);
+		
+		List<Game> savedGames = gameRepository.getAllGames();
+		
+		assertEquals(2, savedGames.size());
+		assertEquals(game, savedGames.get(0));
+		assertEquals(game2, savedGames.get(1));
+	}
+	
 	@Test(expected = InvalidOrBlankGameIdProvidedException.class)
 	public void ensureSaveActionDoesNotOverrideAPreviouslySavedGame(){
 		GameRepository gameRepository = newGameRepository(newGame());

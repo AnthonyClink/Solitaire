@@ -1,5 +1,6 @@
 package com.stevesmith.solitaire.services;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -100,6 +101,7 @@ public class GameService {
 	
 	public Game createNewSolitaireGame() {
 		Game game = dealNewGame(GameType.STANDARD_SOLITAIRE);
+		saveGame(game);
 		return game;
 	}
 	
@@ -110,6 +112,10 @@ public class GameService {
 
 	public Game updateGame(Game game) {
 		return gameRespository.updateGame(game);
+	}
+
+	public List<Game> getSavedGames() {
+		return gameRespository.getAllGames();
 	}
 	
 }

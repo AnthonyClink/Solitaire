@@ -77,7 +77,7 @@ public class GameServiceUnitTest {
 		
 		assertNull(gameService.getGameBoard("0"));
 	}
-	
+		
 	@Test
 	public void endusreGameServiceCanCreateUniqueGameBoards(){
 		GameService gameService = createNewGameService();

@@ -1,5 +1,9 @@
 package com.stevesmith.solitaire.components;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -58,5 +62,20 @@ public class GameRepository {
 		gameRegistry.put(updateData.getId(), updateData);
 		return loadGame(updateData.getId());
 	}
+
+	public List<Game> getAllGames() {
+		List<Game> games = new ArrayList<Game>();
+		games.addAll(gameRegistry.values());
+		Collections.sort(games, new SortById());
+		return games;
+	}
 	
+	public static class SortById implements Comparator<Game>{
+
+		@Override
+		public int compare(Game first, Game second) {
+			return first.getId().compareTo(second.getId());
+		}
+		
+	}
 }

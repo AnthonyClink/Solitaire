@@ -6,18 +6,22 @@ import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
 
 public class Game {
 
-	private final String gameId;
-	private final Map<GameSpot, Pile> gameMap;
+	private String id;
+	private Map<GameSpot, Pile> gameMap;
 
-	public Game(String gameId, Map<GameSpot,Pile> gameMap){
+	protected Game(){
+		
+	}
+	
+	public Game(String id, Map<GameSpot,Pile> gameMap){
 		this.gameMap = gameMap;
-		this.gameId = gameId;
+		this.id = id;
 	}
 	
 	
 	public String getId() {
 		
-		return gameId;
+		return id;
 	}
 
     public Pile getDrawPile(){
