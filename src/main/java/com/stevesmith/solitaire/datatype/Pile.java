@@ -8,9 +8,11 @@ import com.stevensmith.solitaire.exceptions.CardDuplicationException;
 public class Pile {
 
 	private  final List<Card> cards;
+	private final GameSpotType gameSpotType;
 	
-	public Pile(List<Card> cards) {
+	public Pile(GameSpotType gameSpotType, List<Card> cards) {
 		this.cards = cards;
+		this.gameSpotType = gameSpotType;
 	}
 	
 	public List<Card> getCards(){
@@ -49,6 +51,10 @@ public class Pile {
 	public void addCards(List<Card> newCards) {
 		cards.addAll(newCards);
 		
+	}
+	
+	public GameSpotType getGameSpotType(){
+		return gameSpotType;
 	}
 	
 	protected List<Card> getInternalData(){

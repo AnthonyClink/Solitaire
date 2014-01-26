@@ -43,6 +43,14 @@ public class Card {
 	public boolean isOppositeColor(Card card){
 		return this.getColor() != card.getColor();
 	}
+	
+	public String getFullName(){
+		return getRank().getFullName() + " Of " + getSuit().getFullName();
+	}
+	
+	public String getShortName(){
+		return getRank().getShortName() + "-" + getSuit().getShortName();
+	}
 
 	@Override
 	public int hashCode(){

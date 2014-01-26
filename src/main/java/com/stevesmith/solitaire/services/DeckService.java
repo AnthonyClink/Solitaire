@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.CardState;
 import com.stevesmith.solitaire.datatype.Deck;
+import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.datatype.Pile;
 import com.stevesmith.solitaire.datatype.Rank;
 import com.stevesmith.solitaire.datatype.Suit;
@@ -15,8 +16,8 @@ import com.stevesmith.solitaire.datatype.Suit;
 @Singleton
 public class DeckService {
 
-	public Pile createNewEmptyPile() {
-		return new Pile(new ArrayList<Card>());
+	public Pile createNewEmptyPile(GameSpot gameSpot) {
+		return new Pile(gameSpot.getGameSpotType(), new ArrayList<Card>());
 	}
 
 	public Deck getStandard52CardDeck() {
