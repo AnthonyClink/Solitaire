@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Card {
 
-	public static final Card ACE_OF_SPADES = new Card(Rank.ACE, Suit.SPADE, CardState.FACE_DOWN);
-	public static final Card ACE_OF_HEARTS = new Card(Rank.ACE, Suit.HEART, CardState.FACE_DOWN);
+	public static final Card ACE_OF_SPADES = new Card(Rank.ACE, Suit.SPADES, CardState.FACE_DOWN);
+	public static final Card ACE_OF_HEARTS = new Card(Rank.ACE, Suit.HEARTS, CardState.FACE_DOWN);
 	
 	private final Rank rank;
 	private final Suit suit;
