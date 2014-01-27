@@ -2,15 +2,15 @@ package com.stevesmith.solitaire.datatype;
 
 public enum Suit {
 
-	SPADE("S", "Spades", Color.BLACK),
-	HEART("H", "Hearts", Color.RED),
-	CLUB("C", "Clubs", Color.BLACK),
-	DIAMOND("D", "Diamonds", Color.RED),
+	SPADES("S", "Spades", Color.BLACK),
+	HEARTS("H", "Hearts", Color.RED),
+	CLUBS("C", "Clubs", Color.BLACK),
+	DIAMONDS("D", "Diamonds", Color.RED),
 	BLANK("B", "Card", Color.BLACK),
 	DOWN("DWN", "Down", Color.BLACK);
 	
 	public static final Suit[] standardSuits(){
-		return new Suit[]{SPADE, HEART, CLUB, DIAMOND};
+		return new Suit[]{SPADES, HEARTS, CLUBS, DIAMONDS};
 	}
 	
 	private String shortName;

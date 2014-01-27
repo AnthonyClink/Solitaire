@@ -16,8 +16,8 @@ import com.stevesmith.solitaire.datatype.Suit;
 @Singleton
 public class DeckService {
 
-	public Pile createNewEmptyPile(GameSpot gameSpot) {
-		return new Pile(gameSpot.getGameSpotType(), new ArrayList<Card>());
+	public Pile createNewEmptyPile() {
+		return new Pile(new ArrayList<Card>());
 	}
 
 	public Deck getStandard52CardDeck() {

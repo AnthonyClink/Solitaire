@@ -2,18 +2,20 @@ package com.stevesmith.solitaire.datatype;
 
 import org.apache.commons.lang3.ObjectUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Card {
 
 	public static final Card ACE_OF_SPADES = new Card(Rank.ACE, Suit.SPADE, CardState.FACE_DOWN);
 	public static final Card ACE_OF_HEARTS = new Card(Rank.ACE, Suit.HEART, CardState.FACE_DOWN);
-	
 	
 	private final Rank rank;
 	private final Suit suit;
 	private int hashCode;
 	private CardState cardState;
 	
-	public Card(Rank rank, Suit suit, CardState cardState){
+	public Card(@JsonProperty("rank") Rank rank, @JsonProperty("suit") Suit suit, @JsonProperty("cardState") CardState cardState){
 			this.rank = rank;
 			this.suit = suit;
 			this.hashCode = 0;
@@ -31,11 +33,13 @@ public class Card {
 	public Color getColor() {
 		return getSuit().getColor();
 	}
-
+	
+	@JsonIgnore
 	public boolean isBlack() {
 		return getColor() == Color.BLACK;
 	}
 	
+	@JsonIgnore
 	public boolean isRed(){
 		return !isBlack();
 	}
@@ -78,6 +82,7 @@ public class Card {
 			this.getRank() == card.getRank();
 	}
 
+	@JsonIgnore
 	public boolean isFaceDown() {
 		return getCardState() == CardState.FACE_DOWN;			
 	}
@@ -85,11 +90,13 @@ public class Card {
 	public CardState getCardState() {
 		return cardState;
 	}
-
+	
+	@JsonIgnore
 	public boolean isFaceUp(){
 		return !isFaceDown();
 	}
-
+	
+	@JsonIgnore
 	public void turnFaceUp() {
 		cardState = CardState.FACE_UP;
 	}
@@ -98,4 +105,5 @@ public class Card {
 	public String toString(){
 		return getRank().getShortName() + "-" + getSuit().getShortName();
 	}
+
 }

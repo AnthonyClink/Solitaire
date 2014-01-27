@@ -92,7 +92,7 @@ public class GameRepositoryUnitTest {
 		
 		Game updateData = new Game(DEFAULT_GAME_ID, gameData);
 		
-		Card aceOfSpades = new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
+		Card aceOfSpades = new Card(Rank.ACE, Suit.SPADES, CardState.FACE_UP);
 		
 		Pile pile = newPile(aceOfSpades);
 		

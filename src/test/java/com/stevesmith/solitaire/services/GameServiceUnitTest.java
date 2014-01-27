@@ -31,7 +31,7 @@ public class GameServiceUnitTest {
 		 GameService gameService = createNewGameService();
 		 Game game = gameService.dealNewGame(GameType.STANDARD_SOLITAIRE);
 		 
-		 Pile pile5 = game.getReg5Pile();
+		 Pile pile5 = game.getPile(GameSpot.REGULAR_5);
 		 
 		 assertEquals(1, game.getPile(GameSpot.REGULAR_1).getSize());
 		 assertEquals(5,  game.getPile(GameSpot.REGULAR_5).getSize());

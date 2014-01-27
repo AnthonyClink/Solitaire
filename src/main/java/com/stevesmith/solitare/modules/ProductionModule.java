@@ -18,7 +18,7 @@ public class ProductionModule extends AbstractModule{
 
 	@Override
 	protected void configure() {
-
+		install(new JacksonModule());
 	}
 	
 	@Provides

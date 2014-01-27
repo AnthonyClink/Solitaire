@@ -2,12 +2,16 @@ package com.stevensmith.solitaire.datatype;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
@@ -15,6 +19,7 @@ import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.Game;
 import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.datatype.Pile;
+import com.stevesmith.solitaire.exception.ApiMisuseException;
 
 public class GameUnitTest {
 
@@ -34,6 +39,34 @@ public class GameUnitTest {
 		Map<GameSpot, Pile> pileMap = Maps.newHashMap();
 		Game game = new Game("1", pileMap);
 		game.getPile(GameSpot.DRAW);
+	}
+	
+	@Test(expected=ApiMisuseException.class)
+	public void guiceCreatedGameShouldNotBeAllowedCallTheSetPileMethodAsConstructorInjectionIsFavored() throws ApiMisuseException{
+		Game game = new Game(null, null);
+		game.setPile("DRAW", null);
+	}
+	
+	@Test
+	public void gameCanProperlyBeSeralizedAndDesearalizedByJackson() throws JsonGenerationException, JsonMappingException, IOException, PileNotInitializedException{
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		String gameJson = objectMapper.writeValueAsString(standardGame());
+		Game game = objectMapper.readValue(gameJson, Game.class);
+		
+		for(GameSpot gameSpot : GameSpot.values()){
+			assertNotNull(game.getPile(gameSpot));
+		}
+		
+		game.getPile(GameSpot.DRAW).addCard(Card.ACE_OF_SPADES);
+		
+		String jsonWithAceOfSpades = objectMapper.writeValueAsString(game);
+		
+		assertTrue(jsonWithAceOfSpades.contains("\"DRAW\":{\"cards\":[{\"rank\":\"ACE\""));
+		
+		game = objectMapper.readValue(jsonWithAceOfSpades, Game.class);
+		assertEquals(Card.ACE_OF_SPADES, game.getPile(GameSpot.DRAW).getTopCard());
+		
 	}
 	
 	private Game standardGame(){

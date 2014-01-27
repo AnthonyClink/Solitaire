@@ -78,11 +78,11 @@ public class DeckUnitTest {
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_DOWN);
+		return new Card(Rank.ACE, Suit.SPADES, CardState.FACE_DOWN);
 	}
 	
 	private Card newAceOfHearts(){
-		return new Card(Rank.ACE, Suit.HEART, CardState.FACE_DOWN);
+		return new Card(Rank.ACE, Suit.HEARTS, CardState.FACE_DOWN);
 	}
 	
 }
