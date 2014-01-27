@@ -2,17 +2,20 @@ package com.stevesmith.solitaire.datatype;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.stevensmith.solitaire.exceptions.CardDuplicationException;
 
 public class Pile {
 
 	private  final List<Card> cards;
-	private final GameSpotType gameSpotType;
 	
-	public Pile(GameSpotType gameSpotType, List<Card> cards) {
+	public Pile(){
+		this.cards = Lists.newArrayList();
+	}
+	
+	public Pile(List<Card> cards) {
 		this.cards = cards;
-		this.gameSpotType = gameSpotType;
 	}
 	
 	public List<Card> getCards(){
@@ -20,7 +23,8 @@ public class Pile {
 		cardsCopy.addAll(cards);
 		return cardsCopy;
 	}
-
+	
+	@JsonIgnore
 	public int getSize(){
 		return cards.size();
 	}
@@ -41,6 +45,7 @@ public class Pile {
 		
 	}
 	
+	@JsonIgnore
 	public Card getTopCard() {
 		if(cards.size() ==0){
 			return null;
@@ -51,10 +56,6 @@ public class Pile {
 	public void addCards(List<Card> newCards) {
 		cards.addAll(newCards);
 		
-	}
-	
-	public GameSpotType getGameSpotType(){
-		return gameSpotType;
 	}
 	
 	protected List<Card> getInternalData(){

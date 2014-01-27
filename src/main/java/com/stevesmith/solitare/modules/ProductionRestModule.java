@@ -25,10 +25,6 @@ public class ProductionRestModule extends ServletModule{
 	        // hook Guice into Jersy Servlet
 	        bind(GuiceContainer.class);
 
-	        // hook Jackson into Jersey as the POJO <-> JSON mapper
-	        //(jersy needs this class in the constructor, this allows guice to know what to inject there)
-	        bind(JacksonJsonProvider.class).in(Scopes.SINGLETON);
-
 	        //haven't done anything wit this yet.
 	        Map<String, String> guiceContainerConfig = new HashMap<String, String>();
 	        

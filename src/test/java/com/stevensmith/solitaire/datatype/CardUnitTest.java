@@ -17,10 +17,10 @@ public class CardUnitTest {
 	@Test
 	public void basicMetaDataForACardIsSupported(){
 		Card ace = newAceOfSpades();
-		Card aceOfHearts = new Card(Rank.ACE, Suit.HEART, CardState.FACE_UP);
+		Card aceOfHearts = new Card(Rank.ACE, Suit.HEARTS, CardState.FACE_UP);
 		
 		assertEquals(Rank.ACE, ace.getRank());
-		assertEquals(Suit.SPADE, ace.getSuit());
+		assertEquals(Suit.SPADES, ace.getSuit());
 		assertEquals(Color.BLACK, ace.getColor());
 		assertTrue(ace.isBlack());
 		assertFalse(ace.isRed());
@@ -53,6 +53,6 @@ public class CardUnitTest {
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_UP);
+		return new Card(Rank.ACE, Suit.SPADES, CardState.FACE_UP);
 	}
 }

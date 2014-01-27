@@ -40,7 +40,7 @@ public class GameService {
 	private Map<GameSpot, Pile> createSolitaireGameMap() {
 		Map<GameSpot, Pile> map = Maps.newHashMap();
 		for(GameSpot gameSpot : GameSpot.values()){
-			map.put(gameSpot, deckService.createNewEmptyPile(gameSpot));
+			map.put(gameSpot, deckService.createNewEmptyPile());
 		}
 		return map;
 	}

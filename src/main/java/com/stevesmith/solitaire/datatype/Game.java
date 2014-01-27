@@ -5,17 +5,26 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Maps;
+import com.google.inject.Inject;
 import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
+import com.stevesmith.solitaire.exception.ApiMisuseException;
 
 public class Game {
 
 	private String id;
 	private Map<GameSpot, Pile> piles;
 	
+	@JsonIgnore
+	private boolean createdByExternalSystem = false;
+	
 	protected Game(){
-		
+		//this constructor is only intented to be called by jackson.
+		createdByExternalSystem = true;
+		piles = Maps.newHashMap();
 	}
 	
+	@Inject
 	public Game(String id, Map<GameSpot,Pile> gameMap){
 		this.piles = gameMap;
 		this.id = id;
@@ -27,8 +36,6 @@ public class Game {
 		return id;
 	}
 
-
-	@JsonIgnore
 	public Pile getPile(GameSpot gameSpot) throws PileNotInitializedException  {
 		Pile pile = piles.get(gameSpot);
 		
@@ -45,8 +52,11 @@ public class Game {
 	}
 	
 	@JsonAnySetter
-	public void setPiles(Map<GameSpot, Pile> piles){
-		this.piles = piles;
+	public void setPile(String gameSpot, Pile pile) throws ApiMisuseException{
+		if(!createdByExternalSystem){
+			throw new ApiMisuseException("The Game.setPile method is intended to be called by Jackson only. Please inject your data properly using the guice modules. Thank you.");
+		}
+		piles.put(GameSpot.valueOf(gameSpot), pile);
 	}
 	
 	

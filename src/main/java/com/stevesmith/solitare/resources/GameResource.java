@@ -16,7 +16,10 @@ import org.apache.log4j.Logger;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.stevensmith.solitaire.exceptions.PileNotInitializedException;
+import com.stevesmith.solitaire.datatype.Card;
 import com.stevesmith.solitaire.datatype.Game;
+import com.stevesmith.solitaire.datatype.GameSpot;
 import com.stevesmith.solitaire.services.GameService;
 
 @Singleton
@@ -44,6 +47,16 @@ public class GameResource {
     public List<Game> getAllSavedGames(){
     	return gameService.getSavedGames();
     }    
+    
+    @GET
+    @Path("/GAME_WITH_TWO_ACES")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Game getGameWithTwoAces() throws PileNotInitializedException{
+    	Game game = gameService.createGame();
+    	game.getPile(GameSpot.DRAW).addCard(Card.ACE_OF_HEARTS);
+    	game.getPile(GameSpot.DRAW).addCard(Card.ACE_OF_SPADES);
+    	return game;
+    }
     
     @GET
     @Path("/{gameId}")

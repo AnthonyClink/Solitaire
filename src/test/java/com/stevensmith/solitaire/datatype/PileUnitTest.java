@@ -54,7 +54,7 @@ public class PileUnitTest {
 		Pile pile = pileWithOneAceOfSpades();
 		
 		Card aceOfSpades = pile.getCards().get(0);
-		Card aceOfClubs = new Card(Rank.ACE, Suit.SPADE,CardState.FACE_UP);
+		Card aceOfClubs = new Card(Rank.ACE, Suit.SPADES,CardState.FACE_UP);
 		
 		pile.addCard(aceOfClubs);
 		
@@ -74,7 +74,7 @@ public class PileUnitTest {
 	}
 	
 	private Card newAceOfSpades(){
-		return new Card(Rank.ACE, Suit.SPADE, CardState.FACE_DOWN);
+		return new Card(Rank.ACE, Suit.SPADES, CardState.FACE_DOWN);
 	}
 	
 	private Pile pileWithOneAceOfSpades(){

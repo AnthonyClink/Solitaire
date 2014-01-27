@@ -8,7 +8,7 @@ import com.stevensmith.solitaire.exceptions.NoMoreCardsException;
 public class Deck extends Pile{
 	
 	public Deck(List<Card> cards) {
-		super(GameSpotType.DRAW, cards);
+		super(cards);
 	}
 
 	public Card drawCard() {
