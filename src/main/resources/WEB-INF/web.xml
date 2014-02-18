@@ -17,6 +17,6 @@
   </filter-mapping>
   
   <listener>
-  <listener-class>com.stevesmith.solitaire.web.GuiceServletListener</listener-class>
+  <listener-class>com.clinkworks.solitaire.web.GuiceServletListener</listener-class>
 </listener>
 </web-app>
